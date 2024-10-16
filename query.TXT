@@ -1,0 +1,28 @@
+*-------------SELECT de la tabla prestamos con otras 3 tablas----------------------*
+select c.nombres,p.fechaInicio,p.monto,p.interes,m.formaPago,p.cuotas,ep.estado from prestamos p inner join cliente c on p.idCliente=c.codCliente inner join modalidad m on p.idModalidad=m.codModalidad inner join estadoPago ep on p.idEstado=ep.codPago
+
+*---------------------------INSERT tabla modalidad----------------------------------*
+insert into modalidad(formaPago)values("SEMANAL");
+insert into modalidad(formaPago)values("QUINCENAL");
+insert into modalidad(formaPago)values("MENSUAL");
+
+*---------------------------INSERT tabla estadoPago----------------------------------*
+insert into estadoPago(estado)values("PENDIENTE");
+insert into estadoPago(estado)values("EN PROCESO");
+insert into estadoPago(estado)values("LIQUIDADO");
+
+*---------------------------INSERT tabla genero----------------------------------*
+insert into genero(sexo)values("MASCULINO");
+insert into genero(sexo)values("FEMENINO");
+
+*---------------------------INSERT tabla tipoUsuarios----------------------------------*
+insert into tipoUsuarios(tipo)values("ADMINISTRADOR");
+insert into tipoUsuarios(tipo)values("CONTADOR");
+
+*---------------------------RESETEAR EL AUTOINCREMENT ----------------------------------*
+UPDATE SQLITE_SEQUENCE SET SEQ=0 WHERE NAME='prestamos';
+
+
+
+
+

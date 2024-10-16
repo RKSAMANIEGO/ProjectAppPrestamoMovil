@@ -1,0 +1,56 @@
+use BDPRESTAMOS;
+/*numero1*/
+create table genero (codGenero int primary key auto_increment not null,sexo varchar(20))
+;
+/*numero2*/
+create table estadoPago(
+codPago int primary key auto_increment not null,
+estado varchar(30)
+);
+/*numero3*/
+create table modalidad(
+codModalidad int primary key auto_increment not null,
+formaPago varchar(30)
+);
+/*numero4*/
+create table cliente(
+codCliente int primary key auto_increment not null,
+nombres varchar(80),
+dni varchar(15),
+celular varchar(15),
+direccion varchar(100),
+estado char,
+idSexo int,
+foreign key (idSexo) references genero(codGenero)  on update cascade on delete cascade
+);
+/*numero5*/
+create table prestamos (
+codPrestamos int primary key auto_increment not null,
+fechaInicio varchar(15),
+fechaFinal varchar(15),
+monto double,
+interes double,
+cuotas double,
+idModalidad int,
+idCliente int,
+idEstado int,
+foreign key  (idModalidad)references modalidad(codModalidad) on update cascade on delete cascade,
+foreign key  (idCliente)references cliente(codCliente) on update cascade on delete cascade,
+foreign key  (idEstado) references estadoPago(codPago) on update cascade on delete cascade
+);
+/*numero6*/
+
+create table tipoUsuarios(
+codTipo int primary key auto_increment not null,
+tipo varchar(50)
+);
+
+/*numero7*/
+create table usuarios(
+codUsuario int primary key auto_increment not null,
+U_user varchar(50),
+U_pass varchar(50),
+estado char,
+idTipo int,
+foreign key (idTipo) references tipoUsuarios(codTipo)  on update cascade on delete cascade
+);
